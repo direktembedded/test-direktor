@@ -129,6 +129,8 @@ class Engine(object):
         if fixture.id_monitor:
             import importlib
 
+            # TODO catch exception and handle cleaner for user if missing module
+            # ModuleNotFoundError: No module named 'fct_parser_det'
             module = importlib.import_module(fixture.id_monitor.module)
             monitor_class = getattr(module, fixture.id_monitor.implementation)
             monitor = monitor_class(**fixture.id_monitor.arguments)
