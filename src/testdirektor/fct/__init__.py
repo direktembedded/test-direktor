@@ -13,13 +13,13 @@ Full Options from Qt: https://doc.qt.io/qt-6/qwindow.html#Visibility-enum
 """
 
 
-_fct_title = 'Test Executor™ FCT'
+_fct_title = 'Test Direktor™ FCT'
 
 
 def base_argument_parser(description):
     parser = argparse.ArgumentParser(description=description)
     parser.add_argument('--version', '-v', action='version',
-                        version=f'{version.TEST_EXECUTOR_FCT_VERSION}')
+                        version=f'{version.TEST_DIREKTOR_VERSION}')
     parser.add_argument('host_config', help=_host_config_help)
     parser.add_argument('--visibility', help=_visibility_help, default="FullScreen")
     return parser

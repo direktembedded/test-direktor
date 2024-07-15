@@ -66,7 +66,7 @@ class Engine(object):
         else:
             raise FctConfigException(f"Failed to load host configuration {host_config_file}")
 
-    def run(self, visibility="FullScreen", about_text="<b>Test Executor™ FCT</b><p>", title=None):
+    def run(self, visibility="FullScreen", about_text="<b>Test Direktor™ FCT</b><p>", title=None):
         import sys
         sys.argv += ['--style', 'Fusion']
 
