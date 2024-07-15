@@ -35,6 +35,7 @@ class HostConfig:
     ui_config: str = field()
     db_config: Optional[str]
     base_path: str = field()
+    test_path: str = field()
     output_path: str = field()
     title: str = field()
     fixtures: List[Fixture] = field(default_factory=list)

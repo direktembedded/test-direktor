@@ -10,11 +10,12 @@ from ..config.configexception import FctConfigException
 
 class Engine(object):
 
-    def __init__(self, host_config=None):
+    def __init__(self, host_config=None, single_selector=False):
         if host_config:
             self.my_suite_group = None
             self.host_name = None
             self.ui_config = None
+            self.single_selector = single_selector
             self.setup(host_config)
         else:
             raise FctConfigException("No host configuration file provided")
@@ -29,11 +30,16 @@ class Engine(object):
             base_path = Engine.prepend_working_path(base_path)
             id_config_file = Engine.prepend_base_path(host_config.id_config, base_path)
             db_file = Engine.prepend_base_path(host_config.db_config, base_path)
+            test_path = Engine.prepend_base_path(host_config.test_path, base_path)
             self.ui_config = Engine.prepend_base_path(host_config.ui_config, base_path)
             self.host_name, host_id = Engine.fetch_host_name(host_config)
             unique_ids = host_config.unique_identifiers
 
-            if len(host_config.fixtures) > 0:
+            fixture_count = len(host_config.fixtures)
+            if self.single_selector and fixture_count != 1:
+                raise FctConfigException(
+                    f"Only one fixture must be specified in {host_config_file} fixtures element")
+            elif fixture_count > 0:
                 self.my_suite_group = TestSuiteGroup()
                 for station in host_config.fixtures:
                     host_info = {'td.host_fixture':
@@ -48,11 +54,12 @@ class Engine(object):
                     self.my_suite_group.addData(TestExecutorController(f"{station.title}",
                                                 id_config=id_config_file,
                                                 db_config_file=db_file,
-                                                testpath=base_path,
+                                                testpath=test_path,
                                                 instance_table_records=host_info,
                                                 id_monitor=id_monitor,
                                                 output_folder=host_config.output_path,
-                                                unique_ids=unique_ids))
+                                                unique_ids=unique_ids,
+                                                useselector=self.single_selector))
 
             else:
                 raise FctConfigException(f"At least one fixture must be specified in {host_config_file} fixtures element")
