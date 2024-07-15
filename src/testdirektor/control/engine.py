@@ -4,7 +4,7 @@ from marshmallow.exceptions import ValidationError as MarshMallowValidationError
 from testexecutor.model.TestSuiteGroup import TestSuiteGroup
 from testexecutor.model.MultiTestWindowModel import MultiTestWindowModel
 from robottestexecutor.control.TestExecutorController import TestExecutorController
-from testexecutorfct.config.hostconfig import HostConfigSchema
+from testdirektor.config.hostconfig import HostConfigSchema
 from ..config.configexception import FctConfigException
 
 

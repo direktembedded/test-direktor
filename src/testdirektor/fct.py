@@ -4,7 +4,7 @@ from . import version
 
 _host_config_help = """Path to file containing host and test fixture configuration.
 Configuration file is a json file conforming to a Marshmallow Dataclass as defined in module
-testexecutorfct.control.hostconfig
+testdirektor.control.hostconfig
 """
 
 _visibility_help = """Specify how application UI is shown.
@@ -26,7 +26,7 @@ def base_argument_parser(description):
 
 
 def run():
-    from testexecutorfct.control.engine import Engine
+    from testdirektor.control.engine import Engine
 
     args = base_argument_parser(_fct_title).parse_args()
     engine = Engine(args.host_config)
