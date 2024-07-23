@@ -23,7 +23,7 @@ def base_argument_parser(description):
     parser.add_argument('--version', '-v', action='version',
                         version=f'{version.TEST_DIREKTOR_VERSION}')
     parser.add_argument('host_config', help=_host_config_help)
-    parser.add_argument('--visibility', help=_visibility_help, default="FullScreen")
+    parser.add_argument('--visibility', help=_visibility_help, default="Maximized")
     return parser
 
 
