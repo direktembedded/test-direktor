@@ -1,0 +1,20 @@
+{
+  "host": {
+    "name": "",
+    "id": "hostid1234"
+  },
+  "fixtures": [
+      {
+        "title": "Station 1",
+        "fixture_id": "fix202204561"
+      }
+  ],
+  "id_config": "./id-config.json",
+  "ui_config": "./ui-config.json",
+  "db_config": "",
+  "base_path": "./",
+  "test_path": "./models",
+  "output_path": "/var/log/fct/demo_b_rma",
+  "unique_identifiers": ["serial", "part"],
+  "title": "Model[A-C] Testing"
+}
