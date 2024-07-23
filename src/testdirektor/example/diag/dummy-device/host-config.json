@@ -14,7 +14,7 @@
   "db_config": "",
   "base_path": "./",
   "test_path": "./models",
-  "output_path": "/var/log/fct/demo_b_rma",
-  "unique_identifiers": ["serial", "part"],
+  "output_path": "/var/log/diag",
+  "unique_identifiers": ["serial", "model"],
   "title": "Model[A-C] Testing"
 }
