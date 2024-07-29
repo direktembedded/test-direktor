@@ -1,0 +1,24 @@
+{
+  "host": {
+    "name": "",
+    "id": "hostid1234"
+  },
+  "fixtures": [
+      {
+        "title": "Station 1",
+        "fixture_id": "fix202204561"
+      },
+      {
+        "title": "Station 2",
+        "fixture_id": "fix202204562"
+      }
+  ],
+  "id_config": "./id_config.json",
+  "ui_config": "./ui_config.json",
+  "db_config": "",
+  "base_path": "./",
+  "test_path": "./",
+  "output_path": "/var/log/fct/",
+  "unique_identifiers": ["serial", "part"],
+  "title": "DET/DPC Functional Compliance Testing"
+}

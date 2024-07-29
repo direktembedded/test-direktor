@@ -1,0 +1,49 @@
+{
+  "identifiers": [
+    {
+      "table": {"name": "td.device", "field":  {"name": "part_serial"}},
+      "key": "serial",
+      "name": "Serial No",
+      "match": "\\d{4}-\\d{6}"
+    },
+    {
+      "table": {"name": "td.device", "field":  {"name": "part_info_1"}},
+      "key": "pca",
+      "name": "PCA",
+      "match": "\\d{5}-rev[\\w\\d]",
+      "optional": "true"
+    },
+    {
+      "table": {"name": "td.device", "field":  {"name": "part_number"}},
+      "key": "part",
+      "name": "Part Number",
+      "match": "DET\\d{3}|DPC\\d{3}"
+    }
+  ],
+  "suites": {
+    "path": "./suites",
+    "selector": [
+      {
+        "id": "part",
+        "table": {"name": "td.device", "field":  {"name": "part_type", "value":  "DPC"}},
+        "match": "DPC.*",
+        "suite": "DPC001-Suite.robot",
+        "instruction": {"url": "./instructions/DPC001-instruction.html"}
+      },
+      {
+        "id": "part",
+        "table": {"name": "td.device", "field":  {"name": "part_type", "value":  "DET"}},
+        "match": "DET002",
+        "suite": "DET002-Suite.robot",
+        "instruction": {"url": "./instructions/DET002-instruction.html"}
+      },
+      {
+        "id": "part",
+        "table": {"name": "td.device", "field":  {"name": "part_type", "value":  "DET"}},
+        "match": "DET001.*",
+        "suite": "DET001-Suite.robot",
+        "instruction": {"url": "./instructions/DET001-instruction.html"}
+      }
+    ]
+  }
+}

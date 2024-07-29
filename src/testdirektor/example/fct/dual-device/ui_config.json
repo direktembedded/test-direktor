@@ -1,0 +1,72 @@
+{
+  "states": {
+    "idle": { "color": {"default": "lightgray", "pass": "green", "fail": "red"}, "button": {"text": "Clear"} },
+    "ready": { "color": "gray", "button": {"text": "Clear"}},
+    "running": { "color": "gray", "button": {"text": "Stop"}},
+    "stopped": { "color": "orange", "button": {"text": "Clear"}}
+  },
+
+  "proportion": {
+    "title": 0.1,
+    "identification": 0.1,
+    "input": 0.05,
+    "instructions": 0.5,
+    "status": 0.08
+  },
+
+  "results": {
+    "viewableCount": 7,
+    "color": "#e5e2e2",
+    "item": {
+      "proportion": {
+        "name": 0.3,
+        "time": 0.2
+      },
+      "color": "#605b5b",
+      "border": {"color": "#00000000"},
+      "name": {
+        "color": "#605b5b",
+        "text": {"color": "#e5e2e2"}
+      },
+      "feedback": {
+        "color": "#8e8a8a",
+        "border": {"color": "#b9e5e2e2"},
+        "text": {"color": {"default": "black", "progress": "#e5e2e2"}},
+        "progress": {"color": "green"}
+      },
+      "time": {
+        "color": "#605b5b",
+        "text": {"color": "#e5e2e2"}
+      }
+    }
+  },
+
+  "input": {
+    "allow_focus": false
+  },
+
+  "identification": {
+    "item": {
+      "proportion": {
+        "name": 0.4
+      },
+      "color": "#605b5b",
+      "border": { "color": "#00000000" },
+      "name": {
+        "color": "#00000000",
+        "text": {"color": "#e5e2e2"},
+        "border": {"color": "#00000000"}
+      },
+      "value": {
+        "color": "#ffffff",
+        "border": {"color": "#b9e5e2e2"},
+        "text": {"color": "black"}
+      }
+    }
+  },
+
+  "instructions": {
+    "color": {"default": "#f4f2f2", "active": "yellow"},
+    "proportion": {"header": 0.1, "textHeight": 0.064, "control": 0.18}
+  }
+}
