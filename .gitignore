@@ -1,7 +1,7 @@
 .idea
 **/__pycache__/*
-*venv
+*venv*
 
 build/*
 dist/*
-testexecutorfct.egg-info/*
+*testdirektor.egg-info*
