@@ -17,7 +17,7 @@
 
 import argparse
 from testdirektor import __version__ as version
-
+from testdirektor.config.configexception import ConfigException
 
 _host_config_help = """Path to file containing host and test fixture configuration.
 Configuration file is a json file conforming to a Marshmallow Dataclass as defined in module
@@ -34,7 +34,7 @@ _fct_title = 'Test Direktor™ FCT'
 
 
 def base_argument_parser(description):
-    parser = argparse.ArgumentParser(description=description)
+    parser = argparse.ArgumentParser(prog="testdirektor.fct", description=description)
     parser.add_argument('--version', '-v', action='version',
                         version=f'{version}')
     parser.add_argument('host_config', help=_host_config_help)
@@ -43,8 +43,21 @@ def base_argument_parser(description):
 
 
 def run():
+    import sys
     from testdirektor.control.engine import Engine
 
     args = base_argument_parser(_fct_title).parse_args()
-    engine = Engine(args.host_config)
-    engine.run(visibility=args.visibility, about_text=f'<b>{_fct_title}</b><p>')
+    engine = None
+    err = -1
+    try:
+        engine = Engine(args.host_config)
+    except ConfigException as ex:
+        sys.stderr.write(f"Failed to load configuration from {ex.file}: {str(ex)}")
+        err = 1
+    except Exception as ex:
+        sys.stderr.write(f"Error setting up application: {str(ex)}")
+        err = 2
+    if engine:
+        engine.run(visibility=args.visibility, about_text=f'<b>{_fct_title}</b><p>')
+    else:
+        exit(err)

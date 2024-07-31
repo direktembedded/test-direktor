@@ -16,12 +16,14 @@
 
 
 import os
+from json import JSONDecodeError
+
 from marshmallow.exceptions import ValidationError as MarshMallowValidationError
 from testexecutor.model.TestSuiteGroup import TestSuiteGroup
 from testexecutor.model.MultiTestWindowModel import MultiTestWindowModel
 from robottestexecutor.control.TestExecutorController import TestExecutorController
 from testdirektor.config.hostconfig import HostConfigSchema
-from ..config.configexception import FctConfigException
+from ..config.configexception import ConfigException
 
 
 class Engine(object):
@@ -34,7 +36,7 @@ class Engine(object):
             self.single_selector = single_selector
             self.setup(host_config)
         else:
-            raise FctConfigException("No host configuration file provided")
+            raise ConfigException("No host configuration file provided")
 
     def setup(self, host_config_file=None):
         host_config_file = Engine.prepend_working_path(host_config_file)
@@ -53,8 +55,8 @@ class Engine(object):
 
             fixture_count = len(host_config.fixtures)
             if self.single_selector and fixture_count != 1:
-                raise FctConfigException(
-                    f"Only one fixture must be specified in {host_config_file} fixtures element")
+                raise ConfigException(
+                    f"Only one fixture must be specified in fixtures element", host_config_file)
             elif fixture_count > 0:
                 self.my_suite_group = TestSuiteGroup()
                 for station in host_config.fixtures:
@@ -78,9 +80,9 @@ class Engine(object):
                                                 useselector=self.single_selector))
 
             else:
-                raise FctConfigException(f"At least one fixture must be specified in {host_config_file} fixtures element")
+                raise ConfigException(f"At least one fixture must be specified in fixtures element", host_config_file)
         else:
-            raise FctConfigException(f"Failed to load host configuration {host_config_file}")
+            raise ConfigException(f"Failed to load host configuration", host_config_file)
 
     def run(self, visibility="FullScreen", about_text="<b>Test Direktor™ FCT</b><p>", title=None):
         import sys
@@ -106,9 +108,11 @@ class Engine(object):
                     host_config_str = f.read()
                     host_config_ret = HostConfigSchema().loads(host_config_str)
         except MarshMallowValidationError as ex:
-            raise
+            raise ConfigException(str(ex), host_config_file)
+        except JSONDecodeError as ex:
+            raise ConfigException(str(ex.args), host_config_file)
         except Exception as ex:
-            raise Exception("Failed to load host configuration data") from ex
+            raise ConfigException(str(ex), host_config_file)
 
         return host_config_ret
 

@@ -15,6 +15,7 @@
 #
 
 
-class FctConfigException(Exception):
-    def __init__(self, description):
+class ConfigException(Exception):
+    def __init__(self, description, file=""):
         super().__init__(description)
+        self.file = file
