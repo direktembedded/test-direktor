@@ -46,14 +46,16 @@ def get_package_version(path):
 
 if __name__ == "__main__":
     import os
+    import sys
 
     return_code = -1
     current_path = os.path.dirname(os.path.abspath(__file__))
     package_path = os.path.join(current_path, 'src')
     git_version = get_git_version()
-    if is_version_clean(git_version):
+    ignore_version = len(sys.argv) > 1 and sys.argv[1] == "--ignore-version"
+    if ignore_version or is_version_clean(git_version):
         package_version = get_package_version(os.path.join(package_path))
-        if package_version != git_version:
+        if not ignore_version and package_version != git_version:
             print(f"Package version ({package_version}) not same as git version ({git_version})\n"
                   "Please update, commit, tag and re-run this script")
         else:
@@ -61,6 +63,6 @@ if __name__ == "__main__":
             return_code = 0
     else:
         print(f"Git version ({git_version}) not clean, not packaging\n"
-              "git tree must be clean and tag must match VERSION file")
+              "git tree must be clean and tag must match src/testdirektor/version.py file")
 
     exit(return_code)
