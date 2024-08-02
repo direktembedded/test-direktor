@@ -26,3 +26,11 @@
 
 [tool.setuptools.dynamic]
     version = {attr = "testdirektor.__version__"}
+
+[project.scripts]
+    fct = "testdirektor.fct:run"
+    diag = "testdirektor.diag:run"
+
+[project.gui-scripts]
+    fct-gui = "testdirektor.fct:run"
+    diag-gui = "testdirektor.diag:run"
