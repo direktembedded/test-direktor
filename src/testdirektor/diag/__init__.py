@@ -52,7 +52,7 @@ def run():
     engine = None
     err = -1
     try:
-        engine = Engine(args.host_config)
+        engine = Engine(args.host_config, single_selector=True)
     except ConfigException as ex:
         sys.stderr.write(f"Failed to load configuration from {ex.file}: {str(ex)}")
         err = 1
