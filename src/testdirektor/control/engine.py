@@ -34,6 +34,7 @@ class Engine(object):
             self.host_name = None
             self.ui_config = None
             self.single_selector = single_selector
+            self.host_config = None
             self.setup(host_config)
         else:
             raise ConfigException("No host configuration file provided")
@@ -44,6 +45,7 @@ class Engine(object):
         host_config = Engine.load_host_config(host_config_file)
 
         if host_config:
+            self.host_config = host_config
             # Base path is the path that paths in ui and id config are base against if they specify ./
             base_path = Engine.prepend_working_path(base_path)
             id_config_file = Engine.prepend_base_path(host_config.id_config, base_path)
@@ -89,7 +91,11 @@ class Engine(object):
         sys.argv += ['--style', 'Fusion']
 
         if not title:
-            title = f"{self.host_name}: {title}"
+            title = self.host_config.title
+            if title:
+                title = f"{self.host_name} : {title}"
+            else:
+                title = f"{self.host_name}"
 
         with open(self.ui_config) as f:
             window_model = MultiTestWindowModel(self.my_suite_group, title)
