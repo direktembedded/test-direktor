@@ -1,15 +1,14 @@
-Test Direktor ™
-===============
+Test Direktor ™ Application
+===========================
 
-Test Direktor is a configurable test execution User Interface tool using Robot Framework suite with
-Test Executor Python UI library for the execution, monitoring and control of python based tests on a device/system.
+*Test Direktor* ™ is a configurable User Interface software for test execution of Robot Framework suites using
+*Test Executor* ™ Python UI library for the execution, monitoring and control of python based tests on a test target.
 
-Multiple device fixtures can be defined for devices/systems each identified by numerous key values
-(for example serial number and MAC address) which are configured by the user of this library.
+Multiple device fixtures can be defined for the targets, each identified by user configurable key values
+(for example serial number and MAC address) for automatic selection of test suites.
 
-Test Direktor has two modes. A Functional Compliance Test mode as testdirektor.fct and a Diagnostics mode
-as testdirektor.fct. The former allows for multiple fixtures which can be run against multiple device suites,
-where as the latter is a single fixture with user selectable tests.
+*Test Direktor* ™ has two modes. A Functional Compliance Test mode as testdirektor.fct and a Diagnostics mode
+as testdirektor.diag. The fct module allows for multiple fixtures which can be run against their corresponding device suites. The diag module is a single fixture with user selectable tests.
 
 Framework
 ---------
@@ -19,6 +18,12 @@ each fixture defined.
 Configuration
 -------------
 Configuration is achieved using multiple json files. An upper level host configuration defining one
-or more fixtures, each of which has a UI configuration and an identifier configuration.
+or more fixtures, each of which has a section to define the UI layout and another section which configures the target identifiers.
+
+Execution
+---------
+*Test Direktor* ™ can be executed using any python execution method, including virtual environments
+and system installation. We recommend using `pex <https://docs.pex-tool.org/>`_ as it allows you to
+distribute identical controlled environments easily to multiple test stations.
 
 Copyright © 2024 Direkt Embedded Pty Ltd

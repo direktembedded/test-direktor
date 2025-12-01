@@ -5,7 +5,7 @@
 [project]
     name = "testdirektor"
     description = "Functional Compliance and Diagnostics Test UI using Robot Framework suites"
-    readme = "README.md"
+    readme = "README.rst"
     requires-python = ">=3.6"
     keywords = ["fct", "rma", "diagnostic test", "test ui", "test gui"]
     license = {file = "LICENSE"}
