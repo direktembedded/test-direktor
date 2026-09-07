@@ -23,7 +23,7 @@ or more fixtures, each of which has a section to define the UI layout and anothe
 Execution
 ---------
 *Test Direktor* ™ can be executed using any python execution method, including virtual environments
-and system installation. We recommend using `pex <https://docs.pex-tool.org/>`_ as it allows you to
-distribute identical controlled environments easily to multiple test stations.
+and system installation.
+It is worth noting that `pex <https://docs.pex-tool.org/>`_ would be a nice way to distribute identical controlled environments easily but since PySide6 6.6 or so pex has not bundled it well.
 
 Copyright © 2024 Direkt Embedded Pty Ltd
