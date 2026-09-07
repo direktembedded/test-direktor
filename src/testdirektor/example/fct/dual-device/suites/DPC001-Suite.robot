@@ -24,6 +24,7 @@ Test Template    User Repeat On Fail
 *** Test Cases ***
 
 Update Firmware
+    Verify Vdd           2  4   VDD verify failed, not updating firmware
     Update Firmware      DPC001.fw
 
 Reset Verify
