@@ -54,6 +54,11 @@ Output 2
 Output 3
     Verify Output Sequence  3
 
+End Suite
+    [Template]          NONE
+    ${choice} =         User Choice    Click yes to end suite, no to fail as an example
+    Should Be Equal     "${choice}"    "yes"
+
 
 *** Keywords ***
 Calibrate
