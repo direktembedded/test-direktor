@@ -26,7 +26,7 @@ a value would be read from the device.
 __version__ = "0.1.0"
 
 
-class DumyFctParser(object):
+class DummyFctParser(object):
 
     ROBOT_LIBRARY_SCOPE = 'SUITE'
 
